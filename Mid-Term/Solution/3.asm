@@ -1,0 +1,59 @@
+
+.MODEL SMALL
+.STACK 100H
+
+.DATA 
+NUM1 DB ?
+NUM2 DB ?
+PROMPT_1 DB "Enter a Number1: $"
+PROMPT_2 DB 0DH,0AH,"Enter a Number2: $"
+PROMPT_3 DB 0DH,0AH,"Smallest one: $"
+
+.CODE 
+
+    MAIN PROC 
+   MOV AX,@DATA
+   MOV DS,AX
+   LEA DX,PROMPT_1
+   
+   
+   MOV AH,9
+   INT 21H
+     
+   MOV AH,1
+   INT 21H
+   MOV NUM1,AL
+
+   LEA DX,PROMPT_2
+   MOV AH,9
+   INT 21H
+  
+   MOV AH,1
+   INT 21H
+   MOV NUM2,AL
+
+   LEA DX,PROMPT_3
+   MOV AH,9
+   INT 21H
+   MOV AL,NUM1
+   CMP AL,NUM2
+  
+   JG @SECOND
+   @FIRST:  MOV AH,2
+   MOV DL,NUM1
+   INT 21H
+   JMP @EXIT
+
+   @SECOND: MOV AH,2
+   MOV DL,NUM2
+   INT 21H
+     
+     @EXIT:
+   MOV AH,4CH
+   INT 21H
+MAIN ENDP
+END MAIN
+
+
+
+
