@@ -16,7 +16,7 @@ MAIN PROC
     INT 21H
     
 INPUT_1:
-    MOV AH,1
+    MOV AH,1      
     INT 21H
     MOV CL,AL
     
@@ -43,14 +43,14 @@ L4: MOV AL,CL
     SUB BL,30H
 
 LCM:
-   MOV BH,AL
-   MUL CL 
+   MOV BH,AL                          
+   MUL CL           ;multiplies the value in AL with CL here CL is set as a counter register         
    AAM
-   MOV DX,AX 
-   DIV BL
+   MOV DX,AX        ;stores the product in a register DX
+   DIV BL           ;divides the product with the second number
    CMP AH,00
-   JZ RESULT_PRINT        
-   INC CL 
+   JZ RESULT_PRINT  ;if the remainder is zero then prints the product      
+   INC CL           ;if the remainder is not zero then increments CL and loops the same process
    MOV AL,BH
    JMP LCM
    

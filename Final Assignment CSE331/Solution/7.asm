@@ -33,10 +33,10 @@ MAIN PROC
     SUB AL,30H
     
     
-    MUL BL
+    MUL BL        ;multiplies value in AL with BL
     AAM 
     
-    CMP AX,15
+    CMP AX,15     ;checks if the product is greater than 15
     JA G_15
     
     LEA DX,M
@@ -44,7 +44,7 @@ MAIN PROC
     INT 21H
     JMP EXIT  
     
-G_15: 
+G_15:              ;prints 1 if product is greater than 15
     LEA DX,S
     MOV AH,9
     INT 21H

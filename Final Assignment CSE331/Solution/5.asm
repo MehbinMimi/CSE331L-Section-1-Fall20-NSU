@@ -20,7 +20,8 @@ INPUT:
     
 EVEN_ODD_CHECK:
     
-    TEST AL,01H
+    TEST AL,01H    ;checks if the number is odd or even. ANDS AL with 000000001b if result
+                   ;zero number even otherwise odd
     JZ EVEN
 
 ODD:
